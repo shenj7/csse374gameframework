@@ -1,6 +1,12 @@
 Engineering Notebook
 
 Violated design principles:
-1) Don't duplicate code. There are multiple attributes/methods in both WordGuessingGame and NumberGuessingGame, such as scanner and showResult(), which could be lifted up into a parent class. Having each of these methods in a separate class makes it difficult to change the functionality - for example, changing the showResult() method to displaying in a JFrame instead of printing to the console. By keeping certain common fields in an abstract class, we can avoid duplicating code and provide a common structure to each game.
+1) Don't duplicate code. There are multiple attributes/methods in both WordGuessingGame and NumberGuessingGame, such as scanner and showResult(), which could be lifted up into a parent class.  By keeping certain common fields in an abstract class, we can avoid duplicating code and provide a common structure to each game.
 
-2) 
+2) Add flexibility. Having each of these methods in a separate class makes it difficult to change the functionality - for example, changing the showResult() method to displaying in a JFrame instead of printing to the console. By creating an abstract class and using the template method, we can change functionality without having to modify every class.
+
+New design:
+See classdiagram.png
+1) Major design decisions:
+
+2) Potential tradeoffs: 
