@@ -6,7 +6,7 @@ Violated design principles:
 2) Add flexibility. Having each of these methods in a separate class makes it difficult to change the functionality - for example, changing the showResult() method to displaying in a JFrame instead of printing to the console. By creating an abstract class and using the template method, we can change functionality without having to modify every class.
 
 New design:
-See classdiagram.png
+See task1classdiagram.png
 1) Major design decisions:
 
 2) Potential tradeoffs: 

@@ -3,33 +3,23 @@ package cmd;
 import com.mashape.unirest.http.Unirest;
 
 import java.util.Random;
-import java.util.Scanner;
 
-public class WordGuessingGame {
+public class WordGuessingGame extends Game {
 	private boolean active;
-	private int winner;
-	private int users;
+	private String winner;
 	
+	private int currAttempt;
 	private int maxAttempts;
-	private int[] userAttempts;
 	
 	private String plainTextWord;
 	private String maskedWord;
 	
-	private Scanner scanner;
-	
 	
 	public WordGuessingGame() {
-		this.winner = -1;
+//		this.currAttempt = 1;
+		this.winner = "";
 		this.active = true;
-		scanner = new Scanner(System.in);
 	}
-	
-	private void readUsers() {
-		System.out.println("Enter how many players: ");
-		this.users = Integer.parseInt(scanner.nextLine());
-	}
-	
 	
 	private void retrieveWordOnline() throws Exception {
 		String apiEndPoint = "http://watchout4snakes.com/wo4snakes/Random/RandomWord";
@@ -50,60 +40,67 @@ public class WordGuessingGame {
 		}
 		this.maskedWord = buffer.toString();
 	}
-	
-	
-	private void initialize(int maxAttempts) throws Exception {
-		System.out.println("Welcome to the Word Guessing game!");
-		this.readUsers();
-		this.retrieveWordOnline();
-		this.codify();
 
-		this.maxAttempts = maxAttempts;
-		this.userAttempts = new int[this.users];
-	}
-
-	
-	private void nextTurn(int user) {
-		int attempt = this.userAttempts[user];
-		
-		System.out.println("Here is the partly completed word: " + this.maskedWord);
-		System.out.format("[User %d, Guess %d of %d]%nWhat is the word? ", user, ++attempt, this.maxAttempts);
-		String option = scanner.nextLine();
-		option = option.toLowerCase();
-		
-		this.userAttempts[user] = attempt;
-		
-		if(option.equals(this.plainTextWord)) {
-			this.active = false;
-			this.winner = user;
-		}
-		else {
-			System.out.println("Not quite right!");
-		}
-
-		System.out.println();
-	}
-	
-	
-	public void launch(int maxAttempt) throws Exception {
-		this.initialize(maxAttempt);
-		int user = 0;
-		int attempt = 0;
-		while(this.isActive() && attempt < maxAttempt) {
-			this.nextTurn(user);
-			user = (user + 1) % this.users;
-			++attempt;
-		}
-		this.showResult();
-	}
-	
 	private boolean isActive() {
 		return this.active;
 	}
 	
-	private void showResult() {
-		if(this.winner >= 0) {
-			System.out.println("Well done, User" + this.winner + "!");
+	@Override
+	public void welcome() {
+		System.out.println("Welcome to the Word Guessing game!");
+
+	}
+
+	@Override
+	public int getNumUsers() {
+		System.out.println("How many users?");
+		return Integer.parseInt(scanner.nextLine());
+	}
+
+	@Override
+	public void provideInstructions() {
+		System.out.println("How many attempts?");
+		maxAttempts = Integer.parseInt(scanner.nextLine());
+		try {
+			this.retrieveWordOnline();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.codify();
+		
+	}
+
+	@Override
+	public boolean isEnd() {
+		return !(this.isActive() && currAttempt <= maxAttempts);
+	}
+
+	@Override
+	public void doTurn() {
+		for (String user: users) {
+			System.out.println("Here is the partly completed word: " + this.maskedWord);
+			System.out.format("[User %s, Guess %d of %d]%nWhat is the word? ", user, currAttempt, this.maxAttempts);
+			String option = scanner.nextLine();
+			option = option.toLowerCase();
+
+			if(option.equals(this.plainTextWord)) {
+				this.active = false;
+				this.winner = user;
+			}
+			else {
+				System.out.println("Not quite right!");
+			}
+
+			System.out.println();
+		}
+
+		++currAttempt;
+	}
+
+	@Override
+	public void showResult() {
+		if(!this.winner.equals("")) {
+			System.out.println("Well done, " + this.winner + "!");
 		}
 		else {
 			System.out.println("Oops, nobody won! The correct answer is: " + this.plainTextWord);
