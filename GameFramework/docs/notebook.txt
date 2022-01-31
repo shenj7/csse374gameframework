@@ -15,3 +15,11 @@ See classdiagram.png
 	- If there is a game that deviates significantly from the existing game structure, it would be difficult to include into the game application
 	- Similarly to the previous tradeoff, it would be difficult to create a game with a different game structure.
 
+Supporting new feature:
+See newfeatureclassdiagram.png
+1) Major design decisions:
+	- Keep GameFramework as an interface. By doing so, we can make a new BoardGame that has the same structure as a Game, but uses the methods from a GameFramework, such as a Board, to suport a board game.
+	- By having the GameFramework seperate from Game, we continue to have the same logic as from the command-line games, allowing us to continue using the old games' logic, while still supporting features from a new kinda of game.
+
+2) Possible tradeoffs:
+	- Another possible design for this would be making another abstract class, BoardGameFramework, that allows for the support of a board game, with methods like createBoard(). However, having an interface allows for fewer dependencies, as the support for the board game does not need to depend on the concrete implementation of certain methods in the Game superclass.
