@@ -19,23 +19,16 @@ public class NumberGuessingGame extends Game {
 	@Override
 	public void welcome() {
 		System.out.println("Welcome to the Number Guessing Game!");
-	}
-	
-	@Override
-	public int getNumUsers() {
-		return 1;
-	}
-	
-	@Override
-	public void gameStart() {
-
-		this.scanner.nextLine();
-		
 		this.high = 100;
 		this.low = 0;
 		this.mid = (high - low) / 2;
 		
 		this.attempt = 0;
+	}
+	
+	@Override
+	public int getNumUsers() {
+		return 1;
 	}
 	
 	@Override
