@@ -21,7 +21,7 @@ public class WordGuessingGame extends Game {
 		this.active = true;
 	}
 	
-	protected void retrieveWordOnline() throws Exception {
+	private void retrieveWordOnline() throws Exception {
 		String apiEndPoint = "http://watchout4snakes.com/wo4snakes/Random/RandomWord";
 		this.plainTextWord = Unirest.post(apiEndPoint)
 									.asString()
