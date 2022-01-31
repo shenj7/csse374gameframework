@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GamingApp {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("Type in the game you would like to play [numberguessing, wordguessing]: ");
+		System.out.println("Type in the game you would like to play [numberguessing, wordguessing, rockpaperscissors]: ");
 		Scanner scanner = new Scanner(System.in);
 		Game game = null;
 		String gameType = scanner.nextLine();
@@ -14,6 +14,8 @@ public class GamingApp {
 		}
 		else if(gameType.equals("wordguessing")) {
 			game = new WordGuessingGame();
+		} else if (gameType.equals("rockpaperscissors")) {
+			game = new RockPaperScissorsGame();
 		}
 		else {
 			System.err.println("Undefined game type.");

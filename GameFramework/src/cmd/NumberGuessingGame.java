@@ -35,6 +35,7 @@ public class NumberGuessingGame extends Game {
 	protected void provideInstructions() {
 		System.out.println("Howdy, " + this.users.get(0) + "! Think of a number between 1-100 and I will guess it within 7 attempts.");
 		System.out.println("Press return if you are ready!");
+		scanner.nextLine();
 	}
 	
 	@Override

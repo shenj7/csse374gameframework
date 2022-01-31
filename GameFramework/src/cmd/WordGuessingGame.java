@@ -41,7 +41,7 @@ public class WordGuessingGame extends Game {
 		this.maskedWord = buffer.toString();
 	}
 
-	protected boolean isActive() {
+	private boolean isActive() {
 		return this.active;
 	}
 	

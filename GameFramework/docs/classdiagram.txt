@@ -1,0 +1,58 @@
+@startuml
+class GamingApp {
+    +main()
+}
+
+class Game {
+    #scanner: Scanner
+    #users: ArrayList<String
+    #numUsers: int
+
+    #init()
+    #{abstract} welcome();
+    #{abstract} getNumUsers(): int
+    #getUsers()
+    #gameStart()
+    #{abstract} provideInstructions()
+    #{abstract} isEnd(): boolean
+    #{abstract} doTurn()
+    #{abstract} showResult
+}
+
+class NumberGuessingGame extends Game {
+    -end: boolean
+    -win: boolean
+    -high: int
+    -low: int
+    -mid: int
+    -attempt: int
+
+    #welcome()
+    #getNumUsers(): int
+    #provideInstructions()
+    #doTurn()
+    #isEnd(): boolean
+    #showResult()
+}
+
+class WordGuessingGame extends Game {
+    -active: boolean
+    -winner: String
+    -currAttempt: int
+    -maxAttempts: int
+    -plainTextWord: String
+    -maskedWord: String
+
+    -retrieveWordOnline()
+    -codify()
+    -isActive(): boolean
+    #welcome()
+    #getNumUsers(): int
+    #provideInstructions()
+    #doTurn()
+    #isEnd(): boolean
+    #showResult()
+}
+
+
+@enduml
