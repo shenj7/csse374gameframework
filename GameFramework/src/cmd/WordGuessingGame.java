@@ -28,7 +28,7 @@ public class WordGuessingGame extends Game {
 									.getBody();
 	}
 	
-	protected void codify() {
+	private void codify() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(this.plainTextWord.charAt(0));
 		Random random = new Random();
