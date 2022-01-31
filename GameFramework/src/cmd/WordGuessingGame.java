@@ -15,20 +15,20 @@ public class WordGuessingGame extends Game {
 	private String maskedWord;
 	
 	
-	public WordGuessingGame() {
+	protected WordGuessingGame() {
 		this.currAttempt = 1;
 		this.winner = "";
 		this.active = true;
 	}
 	
-	private void retrieveWordOnline() throws Exception {
+	protected void retrieveWordOnline() throws Exception {
 		String apiEndPoint = "http://watchout4snakes.com/wo4snakes/Random/RandomWord";
 		this.plainTextWord = Unirest.post(apiEndPoint)
 									.asString()
 									.getBody();
 	}
 	
-	private void codify() {
+	protected void codify() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(this.plainTextWord.charAt(0));
 		Random random = new Random();
@@ -41,24 +41,24 @@ public class WordGuessingGame extends Game {
 		this.maskedWord = buffer.toString();
 	}
 
-	private boolean isActive() {
+	protected boolean isActive() {
 		return this.active;
 	}
 	
 	@Override
-	public void welcome() {
+	protected void welcome() {
 		System.out.println("Welcome to the Word Guessing game!");
 
 	}
 
 	@Override
-	public int getNumUsers() {
+	protected int getNumUsers() {
 		System.out.println("How many users?");
 		return Integer.parseInt(scanner.nextLine());
 	}
 
 	@Override
-	public void provideInstructions() {
+	protected void provideInstructions() {
 		System.out.println("How many attempts?");
 		maxAttempts = Integer.parseInt(scanner.nextLine());
 		try {
@@ -71,12 +71,12 @@ public class WordGuessingGame extends Game {
 	}
 
 	@Override
-	public boolean isEnd() {
+	protected boolean isEnd() {
 		return !(this.isActive() && currAttempt <= maxAttempts);
 	}
 
 	@Override
-	public void doTurn() {
+	protected void doTurn() {
 		for (String user: users) {
 			System.out.println("Here is the partly completed word: " + this.maskedWord);
 			System.out.format("[User %s, Guess %d of %d]%nWhat is the word? ", user, currAttempt, this.maxAttempts);
@@ -98,7 +98,7 @@ public class WordGuessingGame extends Game {
 	}
 
 	@Override
-	public void showResult() {
+	protected void showResult() {
 		if(!this.winner.equals("")) {
 			System.out.println("Well done, " + this.winner + "!");
 		}

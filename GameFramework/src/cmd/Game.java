@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Game {
-	public Scanner scanner;
-	public ArrayList<String> users;
-	public int numUsers;
+	protected Scanner scanner;
+	protected ArrayList<String> users;
+	protected int numUsers;
 
 	//User initialization
 	public void init() {
@@ -21,17 +21,17 @@ public abstract class Game {
 		this.gameStart();
 	}
 
-	public abstract void welcome();
+	protected abstract void welcome();
 	
-	public abstract int getNumUsers();
+	protected abstract int getNumUsers();
 
-	public void getUsers() {
+	protected void getUsers() {
 		this.users.add(scanner.nextLine());
 	}
 	//End user init
 	
 	//Game logic
-	public void gameStart() {
+	protected void gameStart() {
 		this.provideInstructions();
 		while (!isEnd()) {
 			this.doTurn();
@@ -39,13 +39,13 @@ public abstract class Game {
 		this.showResult();
 	}
 	
-	public abstract void provideInstructions();
+	protected abstract void provideInstructions();
 	
-	public abstract boolean isEnd();
+	protected abstract boolean isEnd();
 	
-	public abstract void doTurn();
+	protected abstract void doTurn();
 	
-	public abstract void showResult();
+	protected abstract void showResult();
 	//End game logic
 	
 	

@@ -6,7 +6,12 @@ Violated design principles:
 2) Add flexibility. Having each of these methods in a separate class makes it difficult to change the functionality - for example, changing the showResult() method to displaying in a JFrame instead of printing to the console. By creating an abstract class and using the template method, we can change functionality without having to modify every class.
 
 New design:
-See task1classdiagram.png
+See classdiagram.png
 1) Major design decisions:
+	- I chose to use the template pattern to create the main game framework, as each game follows the same flow.
+	- I chose to have the users in an arrayList, as multi-player games can use this effectively, while single-player games could use the same structure, with an arraylist size of 1.
 
 2) Potential tradeoffs: 
+	- If there is a game that deviates significantly from the existing game structure, it would be difficult to include into the game application
+	- Similarly to the previous tradeoff, it would be difficult to create a game with a different game structure.
+

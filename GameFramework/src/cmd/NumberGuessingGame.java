@@ -17,7 +17,7 @@ public class NumberGuessingGame extends Game {
 
 	
 	@Override
-	public void welcome() {
+	protected void welcome() {
 		System.out.println("Welcome to the Number Guessing Game!");
 		this.high = 100;
 		this.low = 0;
@@ -27,18 +27,18 @@ public class NumberGuessingGame extends Game {
 	}
 	
 	@Override
-	public int getNumUsers() {
+	protected int getNumUsers() {
 		return 1;
 	}
 	
 	@Override
-	public void provideInstructions() {
+	protected void provideInstructions() {
 		System.out.println("Howdy, " + this.users.get(0) + "! Think of a number between 1-100 and I will guess it within 7 attempts.");
 		System.out.println("Press return if you are ready!");
 	}
 	
 	@Override
-	public void doTurn() {
+	protected void doTurn() {
 		System.out.format("[Attempt #%d] Is your number %d? Guess [high / low / correct] ", ++this.attempt, this.mid);
 		String option = scanner.nextLine();
 		option = option.toLowerCase();
@@ -64,12 +64,12 @@ public class NumberGuessingGame extends Game {
 	}
 
 	@Override
-	public boolean isEnd() {
+	protected boolean isEnd() {
 		return this.end;
 	}
 	
 	@Override
-	public void showResult() {
+	protected void showResult() {
 		if(this.win) {
 			System.out.format("Hurrah! I won, " + this.users.get(0) + "!");
 		}
