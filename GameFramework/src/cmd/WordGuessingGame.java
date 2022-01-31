@@ -15,7 +15,7 @@ public class WordGuessingGame extends Game {
 	private String maskedWord;
 	
 	
-	protected WordGuessingGame() {
+	public WordGuessingGame() {
 		this.currAttempt = 1;
 		this.winner = "";
 		this.active = true;

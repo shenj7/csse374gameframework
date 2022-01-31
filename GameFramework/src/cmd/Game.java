@@ -9,7 +9,7 @@ public abstract class Game {
 	protected int numUsers;
 
 	//User initialization
-	protected void init() {
+	public void init() {
 		this.users = new ArrayList<String>();
 		this.scanner = new Scanner(System.in);
 		this.welcome();
