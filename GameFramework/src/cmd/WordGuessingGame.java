@@ -16,7 +16,7 @@ public class WordGuessingGame extends Game {
 	
 	
 	public WordGuessingGame() {
-//		this.currAttempt = 1;
+		this.currAttempt = 1;
 		this.winner = "";
 		this.active = true;
 	}
